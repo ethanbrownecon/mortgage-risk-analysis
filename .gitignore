@@ -1,0 +1,14 @@
+.DS_Store
+
+# Survey and derived datasets
+*.csv
+*.dta
+
+# Stata graph and temporary files
+*.gph
+*.stswp
+*.stswp.*
+
+# Generated Word reports and assignment materials
+*.doc
+*.docx
