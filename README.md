@@ -1,25 +1,34 @@
-# Mortgage Risk Analysis
+# Mortgage Risk Indicators and Borrower Characteristics
 
-An empirical analysis of mortgage risk indicators using the National Survey of Mortgage Originations (NSMO) public-use data. Stata scripts clean the survey data, construct loan-risk measures, and examine how those measures vary across borrower and loan characteristics.
+An applied econometrics project from ECO 420, Econometrics, Berry College, Spring 2025.
 
-## Project workflow
+## Question
 
-1. `Projectdofile.do` filters the source data and creates derived risk indicators, a composite risk count, and a binary high-risk measure.
-2. `ProjectWork.do` produces descriptive statistics, exploratory graphs, correlations, and regression tables.
+How do risky mortgage features vary across borrower groups, and do the differences remain after accounting for credit score, age, education, and neighborhood income?
 
-The analysis defines a high-risk loan as one with at least two of the component risk indicators. The regression and descriptive results are observational and should not be interpreted as causal or as lending recommendations.
+## Why it matters
+
+Features such as high loan to value ratios, heavy debt burdens, and low credit scores affect both default risk and household financial strain. Looking at who holds them is a first step toward understanding how mortgage risk is distributed across borrowers.
 
 ## Data
 
-The NSMO public-use file is not included in this repository. Obtain it from its official provider and save it as `data/NSMO_PUF.dta`. The generated `Final_Dataset.dta` is also excluded; the scripts create it locally.
+The National Survey of Mortgage Originations (NSMO) public use file, limited to 30 year loans of a single loan type. The file is not included. Download it from its official provider and save it as `data/NSMO_PUF.dta`.
+
+## Method
+
+`Projectdofile.do` builds seven risk indicators: adjustable rate, balloon payment, rate spread above 1.5, combined loan to value above 90, debt to income above 43, payment to income above 31, and credit score below 620. A loan is coded high risk when it has at least two of these. `ProjectWork.do` then reports descriptive statistics, graphs, correlations, and linear regression models of balloon payments and high risk status on race, credit score, age, sex, education, and neighborhood income, including race by age and race by education interactions.
+
+## Limitations
+
+The results are observational and should not be read as causal or as lending advice. The high risk cutoffs are simplifying choices.
 
 ## Run
 
-Use Stata and install the `outreg2` package (for example, from Stata with `ssc install outreg2`). From the repository root, run:
+Install the `outreg2` package (`ssc install outreg2`), then from the repository root in Stata:
 
 ```stata
 do Projectdofile.do
 do ProjectWork.do
 ```
 
-The scripts expect to be run in this order. Generated datasets, graph files, and Word-format result tables remain local and are not tracked in the repository. No pre-generated results are included; run the scripts against the current source data to produce them.
+Run the scripts in this order. Generated datasets, graphs, and tables are created locally and are not tracked.
